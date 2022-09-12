@@ -1,7 +1,17 @@
 # Starter pipeline
 - task: CopyFiles@2
   inputs:
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'Copyfile2'
+    Contents: '''**/*.war'''
+    TargetFolder: '''$(build.artifactstagingdirectory)'''
     Contents: '**'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
     TargetFolder: 
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
